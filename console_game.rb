@@ -34,4 +34,12 @@ class Console_Game
 
 	end
 
+	def change_player
+		if active_player == player2
+			@active_player = player1
+		else
+			active_player = player2
+		puts active_player
+	end
+	
 end

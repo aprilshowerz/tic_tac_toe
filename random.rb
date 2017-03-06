@@ -1,12 +1,16 @@
-class Random
+class Random_AI
 
-		attr_reader :marker
+	attr_reader :marker
 
 	def initialize(marker)
-		@marker=marker
+		@marker = marker
 	end
-	def get_move(board)
+
+	def fill_move(board)
+		
 		board.each_index.select{ |empty| board[empty] == ''}.sample
 	end
-	
 end
+
+
+	

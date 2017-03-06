@@ -50,7 +50,7 @@ class Board
 
 		win_array.each do |win|
 			row = 0
-			
+
 			win.each do |pos|
 
 
@@ -67,10 +67,6 @@ class Board
 	end
 
 
-
-
-
-
-
-
+	
 end
+

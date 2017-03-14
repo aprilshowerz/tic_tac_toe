@@ -2,71 +2,77 @@ class Board
 
 	attr_accessor :ttt_board
 
-	def initialize 
-		@ttt_board = Array.new(9, '')
+	def initialize
+		@ttt_board = Array.new(9, ' ')
 	end
-
 
 	def update_position(position, marker)
 		ttt_board[position] = marker
 	end
 
+	def valid_position?(position)
 
-	def open_position?(position)
-		if ttt_board[position] == ''
+		if ttt_board[position] == ' '
 			true
 		else
-			false 
+			false
 		end
+		
 	end
-
 
 	def valid_input?(input)
-
-		if input.match(/[XxOo]/)
+		
+		if input.match(/[xXoO]/)
 			true
 		else
 			false
 		end
+		
 	end
 
-
-	def full_board?()
-
-		if ttt_board.include?('')
+	def full_board?
+		if ttt_board.include?(' ')
 			false
 		else
 			true
 		end
-
 	end
-
 
 	def winner?(marker)
 
-	win_array = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]] 
+		winners = [
+			[0, 1, 2],
+			[3, 4, 5],
+			[6, 7, 8],
+			[0, 3, 6],
+			[1, 4, 7],
+			[2, 5, 8],
+			[0, 4, 8],
+			[2, 4, 6]
+		]
 
-	results = false
+		results = false
 
-		win_array.each do |win|
-			row = 0
+		winners.each do |inner_array|
+			count = 0
 
-			win.each do |pos|
+			inner_array.each do |value|
 
+				if ttt_board[value] == marker
 
-				if ttt_board[pos] == marker
-					row += 1
+					count += 1
 
-					if row == 3
+					if count == 3
+
 						results = true
+
 					end
 				end
 			end
 		end
 		results
+
 	end
 
 
-	
 end
-

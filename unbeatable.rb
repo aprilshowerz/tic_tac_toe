@@ -1,165 +1,255 @@
-# class Unbeatable
+class UnbeatableAI
 
-# attr_accessor :marker
-
-# 	def initialize(marker)
-# 		@marker = marker
-# 	end
-# 	def get_move(ttt_board)
-# 		winning_array = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
-# 		board_position = 
-# 		[[ttt_board[0], ttt_board[1], ttt_board[2]],
-# 			[ttt_board[3], ttt_board[4], ttt_board[5]],
-# 			[ttt_board[6], ttt_board[7], ttt_board[8]],
-# 			[ttt_board[0], ttt_board[3], ttt_board[6]],
-# 			[ttt_board[1], ttt_board[4], ttt_board[7]],
-# 			[ttt_board[2], ttt_board[5], ttt_board[8]],
-# 			[ttt_board[0], ttt_board[4], ttt_board[8]],
-# 			[ttt_board[2], ttt_board[4], ttt_board[6]],]
-
-# 			marker_1 = 'X'
-# 			marker_2 = 'O'
-
-# 				if marker == marker_1
-# 					opponent = marker_2
-# 				else
-# 					opponent = marker_1
-# 				end
-
-# 			results = ttt_board.index('')
-# 			board_position.each_with_index do |win_combo, index|
-			
-# 				if win_combo.count(marker) == 2 && win_combo.count('') == 1
-# 					winning_index = win_combo.index('')
-# 					results = winning_array[index][winning_index]
-# 				elsif win_combo.count(opponent) == 2 && win_combo.count('') == 1
-# 					winning_index = win_combo.index('')
-# 					results = winning_array[index][winning_index]
-# 				else
-# 					results 
-# 				end
-				
-# 			end
-# 			results
-# 	end
-# end
-class Unbeatable_AI
-require_relative 'board.rb'
-
-	attr_reader :marker
+	attr_accessor :marker, :opponent
 
 	def initialize(marker)
 		@marker = marker
+		@opponent = get_opponent(@marker)	
 	end
 
+	def get_move(ttt_board)
 
-	def check_fork(ttt_board)
-	
-		fork_array = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]] 
+		move = 50
 
-			fork_pos = [
-				[ttt_board[0], ttt_board[1], ttt_board[2]], 
-				[ttt_board[3], ttt_board[4], ttt_board[5]],
-				[ttt_board[6], ttt_board[7], ttt_board[8]], 
-				[ttt_board[0], ttt_board[3], ttt_board[6]],
-				[ttt_board[1], ttt_board[4], ttt_board[7]],
-				[ttt_board[2], ttt_board[5], ttt_board[8]], 
-				[ttt_board[0], ttt_board[4], ttt_board[8]],
-				[ttt_board[2], ttt_board[4], ttt_board[6]]
-						]
+		if win(ttt_board) <= 8
+			move = win(ttt_board)
+
+		elsif block(ttt_board) <= 8
+			move = block(ttt_board)
+
+		elsif check_for_fork(ttt_board) <= 8
+			move = check_for_fork(ttt_board)
+
+		elsif block_fork(ttt_board) <= 8
+			move = block_fork(ttt_board)
+
+		elsif take_center(ttt_board) <= 8
+			move = take_center(ttt_board)
+
+		elsif opposite_corner(ttt_board) <= 8
+			move = opposite_corner(ttt_board)
+
+		elsif empty_corner(ttt_board) <= 8
+			move = empty_corner(ttt_board)
+
+		else empty_side(ttt_board)
+			move = empty_side(ttt_board)
+		end
+
+		move
+
+	end
+
+	def win(ttt_board)
+		win_or_block(ttt_board, @marker)
+	end
+
+	def block(ttt_board)
+		win_or_block(ttt_board, @opponent)
+	end
+
+	def check_for_fork(ttt_board)
+
+		intersections = take_block_fork(ttt_board, @marker)
+
+		if intersections.detect { |match| intersections.count(match) > 1 } == nil
+
+			move = 10
 		
-			ind = []
-			fork_pos.each_with_index do |fork_combo, fork_index|
-				if fork_combo.count(marker) == 1 && fork_combo.count(' ') == 2
-					ind << fork_index #ind now contains the index of all rows (from fork_pos) that have 1 spot filled
-				end
-			end
+		else
+				
+			move = intersections.detect { |match| intersections.count(match) > 1 }
+		
+		end
+				
+		move
+		
+	end
 
-			fork_square = []
-			ind.each do |index| #this is each index number of a row with 1 spot filled
-				fork_square << fork_array[index] #fork_square now contains combos in fork_array
-			end
+	def block_fork(ttt_board)
 
-			result_array = []
-			fork_square = fork_square.flatten.sort #flatten turns multidimensional array into 1 array; sort puts in order (board positions that are in array)
-			fork_square.each do |square|
-				if ttt_board[square] == ' '
-					result_array << square #result_array contains all positions that work and are empty
-				end
-			end
+		intersections = take_block_fork(ttt_board, @opponent)
 
-			if result_array.find { |combo| result_array.count(combo) > 1 } == nil #checks if a match is found
-				move = 9
-			else
-				move = result_array.find { |combo| result_array.count(combo) > 1 } #if match is found it takes the move
-			end
-			move
+		if ttt_board == [" ", " ", opponent, " ", marker, " ", opponent, " ", " "]
 
+			move = 3
+
+		elsif ttt_board == [opponent, " ", " ", " ", marker, " ", " ", " ", opponent]
+
+			move = 3
+
+		elsif intersections.detect { |match| intersections.count(match) > 1 } == nil
+
+			move = 10
+		
+		else
+				
+			move = intersections.detect { |match| intersections.count(match) > 1 }
+		
+		end
+				
+		move
 
 	end
 
+	def take_center(ttt_board)
+		if ttt_board[4] == " "
+			move = 4
+		else
+			move = 10
+		end
+	end
 
+	def opposite_corner(ttt_board)
 
-	def fill_move(ttt_board)
-		win_array = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]] 
+		corner_combos = [[0,8],[2,6]]
 
-			board_pos = [
-				[ttt_board[0], ttt_board[1], ttt_board[2]],
-				[ttt_board[3], ttt_board[4], ttt_board[5]],
-				[ttt_board[6], ttt_board[7], ttt_board[8]],
-				[ttt_board[0], ttt_board[3], ttt_board[6]],
-				[ttt_board[1], ttt_board[4], ttt_board[7]],
-				[ttt_board[2], ttt_board[5], ttt_board[8]],
-				[ttt_board[0], ttt_board[4], ttt_board[8]],
-				[ttt_board[2], ttt_board[4], ttt_board[6]]
-						]
+		board_corners = [[ttt_board[0],ttt_board[8]],
+						[ttt_board[2],ttt_board[6]]]
+		corner_set = []
+		move = 10
 
-				marker1 = 'x'
-				marker2 = 'o'
-
-				if marker == marker1
-					opponent = marker2
-				else
-					opponent = marker1
-				end
-
-	
-			results = ttt_board.index(' ')
-			board_pos.each_with_index do |win_combo, index|
-
-				if win_combo.count(marker) == 2 && win_combo.count(' ') == 1
-					winning_index = win_combo.index(' ')
-					results = win_array[index][winning_index]
-				elsif win_combo.count(opponent) == 2 && win_combo.count(' ') == 1
-					winning_index = win_combo.index(' ')
-					results = win_array[index][winning_index]
-				# elsif (check_fork(ttt_board) < 9)
-				# 	results = check_fork(ttt_board)
-				else
-					results
-				end
+		board_corners.each_with_index do |value, pos|
+			if value.count(opponent) == 1 && value.count(" ") == 1
+				results = value.index(' ')
+				move = corner_combos[pos][results]
 			end
-			results
-
-
 			
+		end
 
-	
+		move
 
 	end
 
-	# elsif fork_pos.each_with_index do |fork_combo, f_index|
-				# 	if fork_combo.count(marker) == 2 && fork_combo.count(' ') == 1
-				# 		fork_index = fork_combo.index(' ')
-				# 		results = fork_array[f_index][fork_index]
-				# 	else
-				# 		results
-				# 	end
+	def empty_corner(ttt_board)
 
+		corners = [0,2,6,8]
+		empty = []
+
+		corners.each do |pos|
+			if ttt_board[pos] == ' '
+				empty << pos
+			end
+		end
+
+		if empty.length > 0
+			move = empty.shift
+		else
+			move = 10
+		end
+		move
+
+	end
+
+	def empty_side(ttt_board)
+
+		sides = [1,3,5,7]
+		empty = []
+
+		sides.each do |pos|
+			if ttt_board[pos] == ' '
+				empty << pos
+			end
+		end
+
+		if empty.length > 0
+			move = empty.shift
+		else
+			move = 10
+		end
+		move
+
+	end
+
+	def get_opponent(marker)
+		opponent = 'X'
+
+		if marker == 'X'
+			opponent = 'O'
+		else
+			opponent = 'X'
+		end
+	end
+
+	def win_or_block(ttt_board, player)
+
+		win_combos = [
+			[ttt_board[0], ttt_board[1], ttt_board[2]],
+			[ttt_board[3], ttt_board[4], ttt_board[5]],
+			[ttt_board[6], ttt_board[7], ttt_board[8]],
+			[ttt_board[0], ttt_board[3], ttt_board[6]],
+			[ttt_board[1], ttt_board[4], ttt_board[7]],
+			[ttt_board[2], ttt_board[5], ttt_board[8]],
+			[ttt_board[0], ttt_board[4], ttt_board[8]],
+			[ttt_board[2], ttt_board[4], ttt_board[6]]
+			
+		]
+
+		winners = [
+			[0, 1, 2],
+			[3, 4, 5],
+			[6, 7, 8],
+			[0, 3, 6],
+			[1, 4, 7],
+			[2, 5, 8],
+			[0, 4, 8],
+			[2, 4, 6]
+		]
+
+		move = 10
+
+		win_combos.each_with_index do |val, pos|
+
+			if
+				val.count(player) == 2 && val.count(' ') == 1
+				results = val.index(' ')
+				move = winners[pos][results]
+			else
+				move
+			end
+		end
+		move
+
+	end
+
+	def take_block_fork(ttt_board, player)
+
+		fork_combinations = [
+							[ttt_board[0],ttt_board[1],ttt_board[2]],
+							[ttt_board[3],ttt_board[4],ttt_board[5]],
+							[ttt_board[6], ttt_board[7], ttt_board[8]],
+							[ttt_board[0], ttt_board[3], ttt_board[6]],
+							[ttt_board[1],ttt_board[4], ttt_board[7]],
+							[ttt_board[2],ttt_board[5],ttt_board[8]], 
+							[ttt_board[0], ttt_board[4], ttt_board[8]],
+							[ttt_board[2],ttt_board[4],ttt_board[6]]
+							]
+
+		fork_positions = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[4,1,7],[2,5,8],[0,4,8],[2,4,6]]
+
+		fork_spot = []
+		i = []
 		
+		fork_combinations.each_with_index do |forking_line, index|
+			if forking_line.count(player) == 1 && forking_line.count(" ") == 2
+				i.push(index)
+			end
+		end
+
+		i.each do |index|
+			fork_spot << fork_positions[index]
+		end
 		
+		fork_spot = fork_spot.flatten.sort
 
+		intersections = []
+		fork_spot.each do |spot|
+			if ttt_board[spot] == " "
+				intersections.push(spot)
+			end
+		end
 
-
+		intersections
+	end
 
 end

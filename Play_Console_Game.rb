@@ -1,34 +1,20 @@
+# File that will launch the game, and combine all the classes/functions.
+
 require_relative 'console_game.rb'
 
-player1 = Sequential_AI.new('X')
-player2 = Random_AI.new('O')
+game = ConsoleGame.new
 
-game = Console_Game.new(player1, player2) 
+game.intro
 
-game.intro_ttt
-
-game.get_move
-
-game.update_position
-
-game.create_board
-
+until game.check_winner || game.board.full_board?
 game.change_player
-
-game.get_move
-
-game.update_position
-
-game.create_board
-
-until game.check_winner || game.check_tie
-
-	game.change_player
-	game.get_move
-	game.update_position
-	game.create_board
+# game.get_move
+game.update_board
+game.display_board
 end
 
-game.check_winner
-
-game.check_tie
+if game.check_winner
+	puts "#{game.active_player.marker} wins!"
+else
+	puts "You lose!"
+end

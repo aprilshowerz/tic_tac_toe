@@ -38,3 +38,11 @@ if session[:player_one] == "simple ai"
 	else
 		player_one = {:player_mode => "human", :marker => player_one_marker}
 	end
+	
+if session[:player_two] == "simple ai"
+		player_two = {:player_mode => SimpleAI.new, :marker => player_two_marker}
+	elsif session[:player_two] == "sequential ai"
+		player_two = {:player_mode => SequentialAI.new, :marker => player_two_marker}
+	else
+		player_two = {:player_mode => "human", :marker => player_two_marker}
+	end

@@ -71,6 +71,16 @@ class Perfect
 
 	
 
+	#blocks an opponent from making the winning move
+	def block(human, marker, index)
+		if human[marker] == win
+			board[index] = perfect_move
+			true
+		else
+			false
+		end
+	end
+
 	def fork()
 	end
 

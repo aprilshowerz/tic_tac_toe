@@ -38,7 +38,7 @@ if session[:player_one] == "simple ai"
 	else
 		player_one = {:player_mode => "human", :marker => player_one_marker}
 	end
-	
+
 if session[:player_two] == "simple ai"
 		player_two = {:player_mode => SimpleAI.new, :marker => player_two_marker}
 	elsif session[:player_two] == "sequential ai"
@@ -46,3 +46,11 @@ if session[:player_two] == "simple ai"
 	else
 		player_two = {:player_mode => "human", :marker => player_two_marker}
 	end
+
+session[:player_one] = player_one
+	session[:player_two] = player_two
+	session[:board] = create_new_board
+	session[:current_player] = session[:player_one]
+	
+erb :play_game,:locals => {:board => session[:board], :player_one_marker => player_one_marker, :player_two_marker => player_two_marker}
+end

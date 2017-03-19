@@ -18,4 +18,16 @@ def ask_to_play_game
         exit
     end
 end
-
+def player_one_marker()    
+    puts "Player 1, would you like to be X or O?"
+    player_one_answer_for_x_or_o = gets.chomp.upcase
+    if player_one_answer_for_x_or_o == "X"
+            puts "Player 1 has chosen X."
+    elsif player_one_answer_for_x_or_o == "O"
+            puts "Player 1 has chosen O."
+    else 
+        puts "Invalid character: The game has been ended."
+        exit
+    end
+    player_one_answer_for_x_or_o
+end

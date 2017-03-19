@@ -12,5 +12,10 @@ class TicTacToe < Minitest::Test
 		assert_equal([1, "O", 3, 4, 5, 6, 7, 8, 9], board_update([1, 2, 3, 4, 5, 6, 7, 8, 9], 1, "O"))
 	end
 
+	def test_if_space_is_valid_or_invalid
+		assert_equal(false, validity_position?(["O", 2, 3, 4, 5, 6, 7, 8, 9], 0, "O"))
+		assert_equal(true, validity_position?(["X", 2, 3, 4, 5, 6, 7, 8, 9], 4, "O"))
+	end
+
 	
 end

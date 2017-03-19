@@ -40,6 +40,15 @@ class Perfect
 		end
 	end
 
+	#if first move available use a corner space
+	def corner_first(board, marker)
+		if first_move == true
+			board[0] = marker
+		else
+			false
+		end
+	end
+
 	
 
 end

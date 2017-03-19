@@ -46,4 +46,9 @@ def player_one_first_move()
     first_move.to_i
 end
 
-
+def player_two_first_move()
+    puts "player two pick a number between 1-9"
+    second_move = gets.chomp
+    puts "player one chooses #{second_move}"
+    second_move.to_i
+end

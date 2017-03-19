@@ -31,3 +31,12 @@ def player_one_marker()
     end
     player_one_answer_for_x_or_o
 end
+def player_two_marker(p1)
+	if p1 == "X"
+        "O"
+    else
+        "X"
+    end
+end
+
+

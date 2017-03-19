@@ -49,6 +49,15 @@ class Perfect
 		end
 	end
 
+	#determine second move to make 
+	def second_move() 
+		if first_move == false && board[4].class = Fixnum
+			board[4] = marker
+		else
+			corner
+		end
+	end
+
 	
 
 end

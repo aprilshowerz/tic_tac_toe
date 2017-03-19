@@ -69,7 +69,20 @@ class Perfect
 			board[index] = marker
 	end
 
-	
+	#final moves in order to win
+	def win(board, marker)
+		#horizontal top
+		if board[0] && board[1] == marker
+			board[2] == perfect_move
+		elsif board[0] && board[2] == marker
+			board[1] == perfect_move
+		elsif board[1] && board[2] == marker
+			board[0] == perfect_move
+		
+		else
+
+		end
+	end
 
 	#blocks an opponent from making the winning move
 	def block(human, marker, index)

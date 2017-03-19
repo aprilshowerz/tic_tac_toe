@@ -113,14 +113,20 @@ class Perfect
 			board[5] == perfect_move
 		elsif board[5] && board[8] == marker
 			board[2] == perfect_move
-		#diaginal top left 
+		#diagonal top left 
 		elsif board[0] && board[4] == marker
 			board[8] == perfect_move
 		elsif board[0] && board[8] == marker
 			board[4] == perfect_move
 		elsif board[4] && board[8] == marker
 			board[0] == perfect_move
-		
+		#diag bottom left
+		elsif board[2] && board[4] == marker
+			board[6] == perfect_move
+		elsif board[2] && board[6] == marker
+			board[4] == perfect_move
+		elsif board[4] && board[6] == marker
+			board[2] == perfect_move
 		else
 
 		end

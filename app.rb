@@ -30,3 +30,11 @@ post '/playermarker' do
 		player_two_marker = "X"
 		player_one_marker = "O"
 	end
+
+if session[:player_one] == "simple ai"
+		player_one = {:player_mode => SimpleAI.new, :marker => player_one_marker}
+	elsif session[:player_one] == "sequential ai"
+		player_one = {:player_mode => SequentialAI.new, :marker => player_one_marker}
+	else
+		player_one = {:player_mode => "human", :marker => player_one_marker}
+	end

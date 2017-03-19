@@ -24,5 +24,15 @@ class Perfect
 		end
 	end
 
+	#edge position move
+	def edge(board, index)
+		if board[1] = index + 1 || board[3] = index + 1 || board[5] = index + 1 || board[7] = index + 1
+			true
+		else
+			false
+		end
+	end
+
+
 
 end

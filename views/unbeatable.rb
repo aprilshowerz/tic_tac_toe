@@ -71,4 +71,19 @@ class Perfect
 
 	
 
+	def fork()
+	end
+
+	def fork_block()
+	end
+
+	def opposite_corner()
+	end
+
+	def empty_corner()
+	end
+
+	def empty_side()
+	end
+
 end

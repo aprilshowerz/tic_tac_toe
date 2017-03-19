@@ -45,3 +45,12 @@ def game_over?(board, marker)
 	winning_combos(board, marker) || tie_combos?(board)
 end
 	
+def get_available_spaces(board)
+available_spaces = []
+	board.each do |value|
+		if value.is_a?(Fixnum)
+			available_spaces << value
+		end
+	end
+	available_spaces
+end

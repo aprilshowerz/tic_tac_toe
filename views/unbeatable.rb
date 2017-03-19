@@ -78,6 +78,13 @@ class Perfect
 			board[1] == perfect_move
 		elsif board[1] && board[2] == marker
 			board[0] == perfect_move
+		#horiz middle
+		elsif board[3] && board[4] == marker
+			board[5] == perfect_move
+		elsif board[3] && board[5] == marker
+			board[4] == perfect_move
+		elsif board[4] && board[5] == marker
+			board[3] == perfect_move
 		
 		else
 

@@ -54,3 +54,11 @@ session[:player_one] = player_one
 	
 erb :play_game,:locals => {:board => session[:board], :player_one_marker => player_one_marker, :player_two_marker => player_two_marker}
 end
+post '/play_game' do
+	if session[:current_player][:player_mode] == "human"
+erb :human_game,:locals => {:board => session[:board]}
+	else 
+	session[:move] = session[:current_player][:player_mode].get_move(session[:board])
+redirect '/make_move'
+	end
+end

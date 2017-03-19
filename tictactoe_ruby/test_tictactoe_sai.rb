@@ -8,7 +8,10 @@ class TicTacToeSimpleAI <Minitest::Test
 		assert_equal(4, get_move(["X", "X", "O", 4, "O", "X", "X", "X", "O"]))
 	end
 
-	
+	def test_chooses_multiple_spaces_available
+		assert_includes([1, 2, 3], get_move([1, 2, 3, "O", "O", "X", "X", "X", "O"]))
+		refute_includes([4, 5, 6], get_move([1, 2, 3, "O", "O", "X", "X", "X", "O"]))
+	end
 
 
 

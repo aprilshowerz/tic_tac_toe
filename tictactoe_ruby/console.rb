@@ -11,4 +11,9 @@ def print_game_board(array)
      -----------
       #{array[6]} | #{array[7]} | #{array[8]} """
 end
+	player_1 = {:player_mode => SimpleAI.new, :marker => "X"}
+	player_2 = {:player_mode => SequentialAI.new, :marker => "O"}
+	board = create_new_board
+	final_board = play_game(player_1, player_2, board)
 
+print_game_board(board)

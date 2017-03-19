@@ -29,5 +29,11 @@ class TicTacToe < Minitest::Test
 		assert_equal(false, tie_combos?([1, 2, "O", 4, 5, "O", 7, 8, "O"]))
 	end
 
+	def test_that_the_game_is_finished
+		assert_equal(true, game_over?([1, 2, "O", 4, 5, "O", 7, 8, "O"], "O"))
+		assert_equal(true, game_over?(["X", "X", "O", "O", "X", "X", "X", "O", "O"], "O"))
+		assert_equal(false, game_over?([1, 2, 3, 4, 5, 6, 7, 8, 9], "O"))
+	end
+
 	
 end

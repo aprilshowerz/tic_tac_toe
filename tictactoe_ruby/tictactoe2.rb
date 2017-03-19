@@ -9,3 +9,13 @@ def board_update(board, position, marker)
 	board
 end
 
+# test for validity of the space 
+def validity_position?(board, position, marker)
+	if board[position] == position + 1
+		true
+	else
+		false
+	end
+end
+
+

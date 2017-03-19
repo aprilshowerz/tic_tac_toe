@@ -15,6 +15,14 @@ class Perfect
 		end
 	end
 
+	#corner position move
+	def corner(board, index)
+		if board[0] = index + 1 || board[2] = index + 1 || board[6] = index + 1 || board[8] = index + 1
+			true
+		else
+			false
+		end
+	end
 
 
 end

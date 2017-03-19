@@ -62,3 +62,14 @@ erb :human_game,:locals => {:board => session[:board]}
 redirect '/make_move'
 	end
 end
+
+get '/make_move' do
+	session[:board] = board_update(session[:board], session[:move], session[:current_player][:marker])
+	if game_over?(session[:board],session[:current_player][:marker])
+		if winning_combos(session[:board],session[:current_player][:marker])
+			"You have Won!"
+		elsif tie_combos?(session[:board])
+			"You have Tied.."
+		else
+			"Game is Over!" 
+	end

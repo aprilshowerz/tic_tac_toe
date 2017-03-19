@@ -58,6 +58,11 @@ class Perfect
 		end
 	end
 
+	def existing_board(board, index, marker)
+		board[index] = marker
+		board
+	end
+
 	
 
 end

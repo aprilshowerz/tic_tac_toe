@@ -35,3 +35,9 @@ def winning_combos(board, marker)
 	end
 end
 
+def tie_combos?(board)
+board.all? do |value|
+	value.class == String
+	end
+end
+	

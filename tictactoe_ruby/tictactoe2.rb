@@ -19,3 +19,19 @@ def validity_position?(board, position, marker)
 end
 
 
+#check that the x marker is a winner
+def winning_combos(board, marker)
+	if  board[1] == marker  && board[4] == marker && board[7] == marker ||
+		board[2] == marker  && board[5] == marker && board[8] == marker ||
+		board[0] == marker  && board[1] == marker && board[2] == marker ||
+		board[3] == marker  && board[4] == marker && board[5] == marker ||
+		board[6] == marker  && board[7] == marker && board[8] == marker ||
+		board[0] == marker  && board[4] == marker && board[8] == marker ||
+		board[2] == marker  && board[4] == marker && board[6] == marker ||
+		board[0] == marker  && board[3] == marker && board[6] == marker 
+		true
+	else
+		false
+	end
+end
+

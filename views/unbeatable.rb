@@ -63,6 +63,12 @@ class Perfect
 		board
 	end
 
+	#a move made for unbeatable ai
+	def perfect_move(marker, index)
+		if board[index] == perfect_move
+			board[index] = marker
+	end
+
 	
 
 end

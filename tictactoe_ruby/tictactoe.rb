@@ -39,4 +39,11 @@ def player_two_marker(p1)
     end
 end
 
+def player_one_first_move()
+    puts "player one to go first pick a number between 1-9"
+    first_move = gets.chomp
+    puts "player one chooses #{first_move}"
+    first_move.to_i
+end
+
 

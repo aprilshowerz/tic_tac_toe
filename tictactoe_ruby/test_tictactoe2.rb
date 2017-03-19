@@ -17,5 +17,12 @@ class TicTacToe < Minitest::Test
 		assert_equal(true, validity_position?(["X", 2, 3, 4, 5, 6, 7, 8, 9], 4, "O"))
 	end
 
+	def test_that_combo_wins
+		assert_equal(true, winning_combos([1, 2, "X", 4, 5, "X", 7, 8, "X"], "X"))
+		assert_equal(true, winning_combos([1, 2, "O", 4, 5, "O", 7, 8, "O"], "O"))
+		assert_equal(false, winning_combos([1, 2, 3, "O", 5, "X", 7, 8, "X"], "X"))
+		assert_equal(false, winning_combos([1, 2, "X", 4, 5, 6, "X", 8, "X"], "X"))
+	end
+
 	
 end

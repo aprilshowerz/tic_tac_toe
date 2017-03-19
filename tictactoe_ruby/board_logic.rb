@@ -41,3 +41,7 @@ board.all? do |value|
 	end
 end
 	
+def game_over?(board, marker)
+	winning_combos(board, marker) || tie_combos?(board)
+end
+	

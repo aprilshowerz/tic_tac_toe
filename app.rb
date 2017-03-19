@@ -82,3 +82,8 @@ get '/make_move' do
 	erb :play_game, :locals => {:board => session[:board], :player_one_marker => session[:player_one][:marker], :player_two_marker => session[:player_two][:marker]}
 	end
 end
+
+post '/human_game' do
+	session[:move] = params[:move].to_i - 1
+	redirect '/make_move'
+end

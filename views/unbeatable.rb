@@ -33,6 +33,13 @@ class Perfect
 		end
 	end
 
+	#determining whether the first move is made or not
+	def first_move(board)
+	board.all? do |value|
+	value.class = Fixnum
+		end
+	end
 
+	
 
 end

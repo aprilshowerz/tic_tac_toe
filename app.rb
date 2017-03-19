@@ -73,3 +73,12 @@ get '/make_move' do
 		else
 			"Game is Over!" 
 	end
+	else
+		if session[:current_player] == session[:player_one]
+			session[:current_player] = session[:player_two]
+		else
+			session[:current_player] = session[:player_one]
+		end
+	erb :play_game, :locals => {:board => session[:board], :player_one_marker => session[:player_one][:marker], :player_two_marker => session[:player_two][:marker]}
+	end
+end

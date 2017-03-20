@@ -1,35 +1,88 @@
 <!doctype html>
 <html>
-	<body>
-	<center><h2><font face = "fantasy">Good Luck!</font></h2>
-	<hr color = "lightblue" width = "20%">
-	<hr color = "black" width = "25%">
-	<hr color = "lightblue" width = "30%">
-	<form action = "/play_game" method = "post"> 
+<body background="http://media.istockphoto.com/photos/green-grass-football-pitch-picture-id537211737?k=6&m=537211737&s=170667a&w=0&h=eWFs3_M4djO5LDtgDzkvRxROHb4-H_SQYraLJrDApOY=">
+	<style>
+	@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Quicksand|Raleway');
+		body
+		{
+			font-family: 'Raleway', sans-serif;
+			color: white;
+			font-size: 20pt;
+		}
+select {
+	width: 100px;
+	height: 35px;
+		padding:3px;
+		margin: 0;
+		background: lightgreen;
+		color:green;
+		font-size: 20px;
+		font-style: bold;
+		border:none;
+		outline:none;
+		display: inline-block;
+		appearance:none;
+		cursor:pointer;
+}
+input[type=submit]
+{
+	padding:5px 15px;
+	width:150;
+	height: 35px;
+	background:lightgreen;
+	border:0 none;
+	cursor:pointer;
+	/*-webkit-border-radius: 5px;
+	border-radius: 5px;*/
+}
+h2
+{
+	font-family: 'Quicksand', sans-serif;
+}
+.Square {
+				height: 100px;
+				width: 100px;
+				font-size: 45pt;
+				font-family: 'Raleway', sans-serif;
+				text-align: center;
+				border-color: white;
+				border-width: thick;
+			}
+button
+{
+		width: 150px;
+		height: 35px;
+		color: lightgreen;
+		background-color: #666666;
+		border-color: lightgreen;
 
-		<h3><font face = "fantasy">||Player One, <%=player_one_marker%> ||| Player Two, <%=player_two_marker%>||</font></h3>
-	
+}
+	</style>
+	<center><h2>Good Luck!</h2>
+	<form action = "/play_game" method = "post">
+
+		<h3>Player One is <%=player_one_marker%> ||| Player Two is <%=player_two_marker%></h3>
+
 		<br>
 
-	<table>
-		<tr>
-			<td><%=board[0]%></td>
-			<td><%=board[1]%></td>
-			<td><%=board[2]%></td>
-		</tr>
-		<tr>
-			<td><%=board[3]%></td>
-			<td><%=board[4]%></td>
-			<td><%=board[5]%></td>
-		</tr>
-		<tr>
-			<td><%=board[6]%></td>
-			<td><%=board[7]%></td>
-			<td><%=board[8]%></td>
-		</tr>
-		
-	</table> 
-	<button type = "submit" value = "Start Game">Select Move</button>
+			<table border="3">
+				<tr>
+					<td class="Square"><%=board[0]%></td>
+					<td class="Square"><%=board[1]%></td>
+					<td class="Square"><%=board[2]%></td>
+				</tr>
+				<tr>
+					<td class="Square"><%=board[3]%></td>
+					<td class="Square"><%=board[4]%></td>
+					<td class="Square"><%=board[5]%></td>
+				</tr>
+				<tr>
+					<td class="Square"><%=board[6]%></td>
+					<td class="Square"><%=board[7]%></td>
+					<td class="Square"><%=board[8]%></td>
+				</tr>
+			</table>
+		<button type = "submit" value = "Start Game">Select Move</button>
 
 		</form></form>
 	</center>

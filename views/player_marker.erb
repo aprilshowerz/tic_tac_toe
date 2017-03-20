@@ -1,15 +1,52 @@
 <!doctype html>
 <html>
-	<body>
-	<center><h2><font face = "fantasy">Good Luck!</font></h2>
-	<hr color = "lightblue" width = "20%">
-	<hr color = "black" width = "25%">
-	<hr color = "lightblue" width = "30%">
+	<body background="http://media.istockphoto.com/photos/green-grass-football-pitch-picture-id537211737?k=6&m=537211737&s=170667a&w=0&h=eWFs3_M4djO5LDtgDzkvRxROHb4-H_SQYraLJrDApOY=">
+		<style>
+		@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Quicksand|Raleway');
+			body
+			{
+				font-family: 'Raleway', sans-serif;
+				color: white;
+				font-size: 20pt;
+			}
+	select {
+		width: 100px;
+		height: 35px;
+	    padding:3px;
+	    margin: 0;
+	    background: lightgreen;
+	    color:green;
+			font-size: 20px;
+			font-style: bold;
+	    border:none;
+	    outline:none;
+	    display: inline-block;
+	    appearance:none;
+	    cursor:pointer;
+	}
+	input[type=submit]
+	{
+		padding:5px 15px;
+		width:150;
+		height: 35px;
+		color:lightgreen;
+		background:#666666;
+		border-color:lightgreen;
+	  cursor:pointer;
+	  /*-webkit-border-radius: 5px;
+		border-radius: 5px;*/
+	}
+	h2
+	{
+		font-family: 'Quicksand', sans-serif;
+	}
+		</style>
+		<center><h2>Good Luck!</font></h2>
 	<form action = "/start_game" method = "post">
 
 
 		<p>--Player One, <%=player_one_marker%> || Player Two, <%=player_two_marker%>--</p>
-	
+
 		<br>
 
 	<table>
@@ -28,8 +65,8 @@
 			<td><%=board[7]%></td>
 			<td><%=board[8]%></td>
 		</tr>
-		
-	</table> 
+
+	</table>
 <button type = "submit" value = "Start game">Select Move!</button>
 		</form>
 	</center>

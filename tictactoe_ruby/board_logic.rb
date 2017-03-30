@@ -42,7 +42,8 @@ end
 
 # function for checking for tie combos when passing the board through.
 def tie_combos?(board)
-# checks if all the values of the board are strings.
+# checks if all the values of the board are strings. (all? checks to see if all the values pass all the criteria.) 
+#So, are all the values of the board array string? 
 board.all? do |value|
 	value.class == String
 	end

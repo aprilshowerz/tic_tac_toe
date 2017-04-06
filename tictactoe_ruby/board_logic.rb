@@ -1,6 +1,6 @@
-# has no input amd creates an array
+# has no input and creates an array
 def create_new_board()
-	#ppoulates the array with numbers 1 thru 9.
+	#populates the array with numbers 1 thru 9.
 	board_array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 end
 
@@ -49,7 +49,9 @@ board.all? do |value|
 	end
 end
 	
+	#function to check if game is over. Passing in the board and markers.
 def game_over?(board, marker)
+	#
 	winning_combos(board, marker) || tie_combos?(board)
 end
 	
@@ -61,4 +63,4 @@ available_spaces = []
 		end
 	end
 	available_spaces
-end
+end"

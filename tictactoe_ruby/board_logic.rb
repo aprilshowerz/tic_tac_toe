@@ -63,4 +63,4 @@ available_spaces = []
 		end
 	end
 	available_spaces
-end"
+end
